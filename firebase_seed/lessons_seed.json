@@ -1,0 +1,176 @@
+{
+  "lessons": [
+    {
+      "id": "lesson01",
+      "order": 1,
+      "title": "Ano ang C++?",
+      "summary": "Panimula sa C++ at kung bakit ito ginagamit.",
+      "contentSlides": [
+        "Ang C++ ay isang programming language na ginamit sa paggawa ng software, games, at embedded systems (tulad ng ESP32!).",
+        "Compiled language ito, ibig sabihin ang code natin ay isinasalin (compile) papuntang machine code bago ito tumakbo.",
+        "Sikat ang C++ dahil mabilis ito at may direktang access sa memory ng computer."
+      ],
+      "animationUrl": "",
+      "voiceoverUrl": ""
+    },
+    {
+      "id": "lesson02",
+      "order": 2,
+      "title": "Ang Unang Program (Hello World)",
+      "summary": "Sumulat ng iyong unang C++ program.",
+      "contentSlides": [
+        "Bawat C++ program ay nagsisimula sa function na main().",
+        "#include <iostream>\nint main() {\n    std::cout << \"Hello, RUSTECH!\";\n    return 0;\n}",
+        "Ang std::cout ang gamit para mag-print sa screen."
+      ],
+      "animationUrl": "",
+      "voiceoverUrl": ""
+    },
+    {
+      "id": "lesson03",
+      "order": 3,
+      "title": "Variables at Data Types",
+      "summary": "Mag-imbak ng data gamit ang variables.",
+      "contentSlides": [
+        "Ang variable ay isang pangalan na nag-iimbak ng value sa memory.",
+        "Common data types: int (integer), float/double (decimal), char (isang letra), bool (true/false), string (text).",
+        "Halimbawa: int age = 25; float price = 19.99;"
+      ],
+      "animationUrl": "",
+      "voiceoverUrl": ""
+    },
+    {
+      "id": "lesson04",
+      "order": 4,
+      "title": "Operators",
+      "summary": "Arithmetic, comparison, at logical operators.",
+      "contentSlides": [
+        "Arithmetic operators: + - * / % (modulo, para sa remainder).",
+        "Comparison operators: == != > < >= <=",
+        "Logical operators: && (AND) || (OR) ! (NOT)"
+      ],
+      "animationUrl": "",
+      "voiceoverUrl": ""
+    },
+    {
+      "id": "lesson05",
+      "order": 5,
+      "title": "If-Else at Conditions",
+      "summary": "Gumawa ng desisyon sa code gamit ang if-else.",
+      "contentSlides": [
+        "Ang if statement ay nagpapatakbo ng code kung totoo (true) ang condition.",
+        "if (age >= 18) {\n    std::cout << \"Adult\";\n} else {\n    std::cout << \"Minor\";\n}",
+        "Pwede rin gumamit ng else if para sa maraming condition."
+      ],
+      "animationUrl": "",
+      "voiceoverUrl": ""
+    },
+    {
+      "id": "lesson06",
+      "order": 6,
+      "title": "Loops (for at while)",
+      "summary": "Ulitin ang code gamit ang loops.",
+      "contentSlides": [
+        "Ang for loop ay ginagamit kapag alam mo na kung ilang beses uulitin.",
+        "for (int i = 0; i < 5; i++) {\n    std::cout << i;\n}",
+        "Ang while loop naman ay umuulit hangga't totoo ang condition."
+      ],
+      "animationUrl": "",
+      "voiceoverUrl": ""
+    },
+    {
+      "id": "lesson07",
+      "order": 7,
+      "title": "Arrays",
+      "summary": "Mag-imbak ng maraming value sa isang variable.",
+      "contentSlides": [
+        "Ang array ay listahan ng values na parehong data type.",
+        "int scores[5] = {90, 85, 77, 92, 88};",
+        "Ang bawat item ay ina-access gamit ang index, nagsisimula sa 0."
+      ],
+      "animationUrl": "",
+      "voiceoverUrl": ""
+    },
+    {
+      "id": "lesson08",
+      "order": 8,
+      "title": "Functions",
+      "summary": "Gumawa ng reusable na blocks ng code.",
+      "contentSlides": [
+        "Ang function ay pangkat ng code na may pangalan, pwedeng tawagin paulit-ulit.",
+        "int add(int a, int b) {\n    return a + b;\n}",
+        "Tinatawag natin ito sa main() gamit ang: add(3, 5);"
+      ],
+      "animationUrl": "",
+      "voiceoverUrl": ""
+    },
+    {
+      "id": "lesson09",
+      "order": 9,
+      "title": "Pointers (Panimula)",
+      "summary": "Unawain ang memory address at pointers.",
+      "contentSlides": [
+        "Ang pointer ay variable na nag-iimbak ng memory address ng ibang variable.",
+        "int x = 10;\nint* ptr = &x;",
+        "Ang & ay 'address of' at ang * ay 'dereference' (kunin ang value sa address)."
+      ],
+      "animationUrl": "",
+      "voiceoverUrl": ""
+    },
+    {
+      "id": "lesson10",
+      "order": 10,
+      "title": "Classes at Objects (OOP)",
+      "summary": "Panimula sa Object-Oriented Programming.",
+      "contentSlides": [
+        "Ang class ay blueprint para gumawa ng objects na may sariling data at functions.",
+        "class Robot {\npublic:\n    std::string name;\n    void move() { std::cout << name << \" is moving\"; }\n};",
+        "Gumagawa tayo ng object mula sa class: Robot r; r.name = \"RUSTECH-1\"; r.move();"
+      ],
+      "animationUrl": "",
+      "voiceoverUrl": ""
+    }
+  ],
+  "quizzes": {
+    "lesson01": [
+      { "question": "Ang C++ ay anong klaseng language?", "choices": ["Compiled", "Wala sa dalawa", "Interpreted lang", "Hindi programming language"], "correctIndex": 0 },
+      { "question": "Ano ang isang gamit ng C++ na binanggit?", "choices": ["Paggawa lang ng website", "Games at embedded systems", "Spreadsheet lang", "Video editing lang"], "correctIndex": 1 }
+    ],
+    "lesson02": [
+      { "question": "Anong function ang laging pinagsisimulan ng C++ program?", "choices": ["start()", "main()", "run()", "init()"], "correctIndex": 1 },
+      { "question": "Ano ang gamit ng std::cout?", "choices": ["Mag-print sa screen", "Mag-delete ng file", "Gumawa ng loop", "Mag-imbak ng number"], "correctIndex": 0 }
+    ],
+    "lesson03": [
+      { "question": "Aling data type ang gamit sa decimal numbers?", "choices": ["int", "char", "float", "bool"], "correctIndex": 2 },
+      { "question": "Ano ang tamang paraan para gumawa ng int variable na 'age'?", "choices": ["int age = 25;", "age int = 25;", "variable age = 25;", "25 = int age;"], "correctIndex": 0 }
+    ],
+    "lesson04": [
+      { "question": "Anong operator ang gamit sa modulo (remainder)?", "choices": ["/", "%", "*", "//"], "correctIndex": 1 },
+      { "question": "Anong logical operator ang ibig sabihin ay 'AND'?", "choices": ["||", "!", "&&", "=="], "correctIndex": 2 }
+    ],
+    "lesson05": [
+      { "question": "Kailan tumatakbo ang code sa loob ng if block?", "choices": ["Kapag false ang condition", "Kapag true ang condition", "Palagi", "Kailanman"], "correctIndex": 1 },
+      { "question": "Anong keyword ang gamit kung gusto mo ng 'kung hindi' na condition?", "choices": ["else", "then", "loop", "break"], "correctIndex": 0 }
+    ],
+    "lesson06": [
+      { "question": "Kailan mas maganda gamitin ang for loop kaysa while loop?", "choices": ["Kapag hindi alam ang bilang ng ulit", "Kapag alam na ang bilang ng ulit", "Hindi pwede gamitin", "Palagi mas maganda ang while"], "correctIndex": 1 },
+      { "question": "Anong ginagawa ng i++ sa loob ng for loop?", "choices": ["Binabawasan ang i", "Dinodoble ang i", "Dinadagdagan ng 1 ang i", "Ginagawang zero ang i"], "correctIndex": 2 }
+    ],
+    "lesson07": [
+      { "question": "Saan nagsisimula ang index ng array sa C++?", "choices": ["0", "1", "-1", "10"], "correctIndex": 0 },
+      { "question": "Ano ang array?", "choices": ["Isang function", "Listahan ng values na parehong type", "Isang loop", "Isang class"], "correctIndex": 1 }
+    ],
+    "lesson08": [
+      { "question": "Bakit tayo gumagamit ng functions?", "choices": ["Para mas mahaba ang code", "Para reusable ang code", "Para mabagal ang program", "Wala itong gamit"], "correctIndex": 1 },
+      { "question": "Ano ang ibabalik ng function na 'int add(int a, int b)'?", "choices": ["Isang string", "Wala", "Isang integer", "Isang array"], "correctIndex": 2 }
+    ],
+    "lesson09": [
+      { "question": "Ano ang tinatawag na 'address of' operator?", "choices": ["*", "&", "%", "#"], "correctIndex": 1 },
+      { "question": "Ano ang iniimbak ng isang pointer?", "choices": ["Isang string lang", "Isang memory address", "Isang function", "Isang class name"], "correctIndex": 1 }
+    ],
+    "lesson10": [
+      { "question": "Ano ang class sa C++?", "choices": ["Isang loop", "Blueprint para sa objects", "Isang variable", "Isang error"], "correctIndex": 1 },
+      { "question": "Anong OOP concept ang pinakita ng lesson na ito?", "choices": ["Loops", "Pointers", "Classes at Objects", "Arrays"], "correctIndex": 2 }
+    ]
+  }
+}

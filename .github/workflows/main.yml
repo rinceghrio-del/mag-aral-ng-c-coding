@@ -1,0 +1,59 @@
+name: Android CI Build
+
+# Kailan tatakbo ito: tuwing may push o pull request papunta sa main branch
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch: # pwede mo ring i-trigger manually sa GitHub Actions tab
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Kunin ang code (checkout)
+        uses: actions/checkout@v4
+
+      - name: I-setup ang Java (JDK 17)
+        uses: actions/setup-java@v4
+        with:
+          distribution: "temurin"
+          java-version: "17"
+
+      - name: Ibalik ang google-services.json mula sa GitHub Secret
+        # IMPORTANT: ang secret na ito ay base64-encoded na bersyon ng buong
+        # google-services.json (hindi raw JSON) para hindi masira ang format
+        # kapag dumaan sa echo. Tingnan ang README para sa paraan ng pag-encode.
+        # Secret name: GOOGLE_SERVICES_JSON_B64
+        # (Settings > Secrets and variables > Actions > New repository secret)
+        run: echo '${{ secrets.GOOGLE_SERVICES_JSON_B64 }}' | base64 -d > app/google-services.json
+
+      - name: I-check kung na-decode ang secret (hindi blangko)
+        run: |
+          SIZE=$(wc -c < app/google-services.json | tr -d ' ')
+          echo "Laki ng na-decode na file: $SIZE bytes"
+          if [ "$SIZE" -eq 0 ]; then
+            echo "::error::Blangko ang nabuo na google-services.json — ibig sabihin walang nakitang value sa secret na GOOGLE_SERVICES_JSON_B64. I-check ang pangalan ng secret (case-sensitive) at kung 'Repository secret' talaga ito, hindi 'Environment secret'."
+            exit 1
+          fi
+
+      - name: I-validate na tamang JSON ang nabuo
+        run: |
+          if ! python3 -m json.tool app/google-services.json > /dev/null; then
+            echo "::error::Sira ang google-services.json na nabuo mula sa secret. I-check ulit ang GOOGLE_SERVICES_JSON_B64 secret."
+            exit 1
+          fi
+
+      - name: Bigyan ng execute permission ang gradlew
+        run: chmod +x ./gradlew
+
+      - name: I-build ang Debug APK
+        run: ./gradlew assembleDebug
+
+      - name: I-upload ang APK bilang build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cpplearn-debug-apk
+          path: app/build/outputs/apk/debug/app-debug.apk

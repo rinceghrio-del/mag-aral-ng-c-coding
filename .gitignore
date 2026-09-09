@@ -1,0 +1,17 @@
+*.iml
+.gradle/
+/local.properties
+.idea/
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+*.apk
+
+# Huwag i-commit ang totoong Firebase config sa public repo.
+# Ginagamit natin ang GitHub Secret (GOOGLE_SERVICES_JSON) sa CI para dito.
+app/google-services.json
+
+# Huwag ding i-commit ang Firebase Admin service account key
+firebase_seed/serviceAccountKey.json
