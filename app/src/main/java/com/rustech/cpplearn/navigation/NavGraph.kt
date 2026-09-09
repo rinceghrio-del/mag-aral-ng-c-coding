@@ -14,6 +14,7 @@ import com.rustech.cpplearn.ui.screen.LoginScreen
 import com.rustech.cpplearn.ui.screen.ProfileScreen
 import com.rustech.cpplearn.ui.screen.QuizScreen
 import com.rustech.cpplearn.ui.screen.RegisterScreen
+import com.rustech.cpplearn.ui.screen.ResultScreen
 import com.rustech.cpplearn.ui.screen.SplashScreen
 
 object Routes {
@@ -23,11 +24,13 @@ object Routes {
     const val HOME = "home"
     const val LESSON = "lesson/{lessonId}"
     const val QUIZ = "quiz/{lessonId}"
+    const val RESULT = "result/{score}/{total}"
     const val LEADERBOARD = "leaderboard"
     const val PROFILE = "profile"
 
     fun lesson(lessonId: String) = "lesson/$lessonId"
     fun quiz(lessonId: String) = "quiz/$lessonId"
+    fun result(score: Int, total: Int) = "result/$score/$total"
 }
 
 @Composable
@@ -92,7 +95,27 @@ fun AppNavGraph(navController: NavHostController = rememberNavController()) {
             val lessonId = backStackEntry.arguments?.getString("lessonId") ?: return@composable
             QuizScreen(
                 lessonId = lessonId,
-                onFinished = { _, _ ->
+                onFinished = { score, total ->
+                    navController.navigate(Routes.result(score, total)) {
+                        popUpTo(Routes.HOME)
+                    }
+                }
+            )
+        }
+
+        composable(
+            route = Routes.RESULT,
+            arguments = listOf(
+                navArgument("score") { type = NavType.IntType },
+                navArgument("total") { type = NavType.IntType }
+            )
+        ) { backStackEntry ->
+            val score = backStackEntry.arguments?.getInt("score") ?: 0
+            val total = backStackEntry.arguments?.getInt("total") ?: 0
+            ResultScreen(
+                score = score,
+                total = total,
+                onContinue = {
                     navController.navigate(Routes.HOME) {
                         popUpTo(Routes.HOME) { inclusive = true }
                     }
