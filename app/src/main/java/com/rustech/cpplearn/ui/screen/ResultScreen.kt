@@ -65,14 +65,22 @@ fun ResultScreen(
     val passed = total > 0 && (score.toFloat() / total) >= PASSING_RATIO
 
     val soundPool = remember { SoundPool.Builder().setMaxStreams(1).build() }
-    val applauseSoundId = remember { soundPool.load(context, R.raw.applause, 1) }
-    DisposableEffect(Unit) {
-        onDispose { soundPool.release() }
-    }
+    var applauseSoundId by remember { mutableStateOf(0) }
 
-    LaunchedEffect(Unit) {
-        if (passed) {
-            soundPool.play(applauseSoundId, 1f, 1f, 1, 0, 1f)
+    DisposableEffect(Unit) {
+        val listener = SoundPool.OnLoadCompleteListener { pool, sampleId, status ->
+            // Tumugtog lang kapag successful ang pag-load (status == 0) at pasado ang user —
+            // dati, may race condition kung saan sinusubukang i-play agad bago pa man
+            // matapos i-load ang sound sa memory, kaya walang naririnig na tunog.
+            if (status == 0 && sampleId == applauseSoundId && passed) {
+                pool.play(sampleId, 1f, 1f, 1, 0, 1f)
+            }
+        }
+        soundPool.setOnLoadCompleteListener(listener)
+        applauseSoundId = soundPool.load(context, R.raw.applause, 1)
+        onDispose {
+            soundPool.setOnLoadCompleteListener(null)
+            soundPool.release()
         }
     }
 
