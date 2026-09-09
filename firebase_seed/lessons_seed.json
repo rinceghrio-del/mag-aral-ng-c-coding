@@ -7,8 +7,11 @@
       "summary": "Panimula sa C++ at kung bakit ito ginagamit.",
       "contentSlides": [
         "Ang C++ ay isang programming language na ginamit sa paggawa ng software, games, at embedded systems (tulad ng ESP32!).",
-        "Compiled language ito, ibig sabihin ang code natin ay isinasalin (compile) papuntang machine code bago ito tumakbo.",
-        "Sikat ang C++ dahil mabilis ito at may direktang access sa memory ng computer."
+        "Compiled language ito, ibig sabihin ang code natin ay isinasalin (compile) papuntang machine code bago ito tumakbo — kaya mabilis itong pumapatakbo.",
+        "Ginawa ang C++ noong 1980s ni Bjarne Stroustrup bilang extension ng C language, dinagdagan ng mga bagong feature tulad ng classes at objects.",
+        "Sikat ang C++ dahil mabilis ito at may direktang access sa memory ng computer — ito rin ang dahilan kung bakit gamit ito sa microcontrollers tulad ng ESP32/Arduino.",
+        "Ilang malalaking application na gawa sa C++: Google Chrome, mga video games (Unreal Engine), operating systems, at firmware ng mga gadget.",
+        "Sa mga susunod na lesson, matututunan natin ang buong foundation ng C++ — mula sa simpleng variables hanggang sa OOP (Object-Oriented Programming)."
       ],
       "animationUrl": "",
       "voiceoverUrl": ""
@@ -19,9 +22,13 @@
       "title": "Ang Unang Program (Hello World)",
       "summary": "Sumulat ng iyong unang C++ program.",
       "contentSlides": [
-        "Bawat C++ program ay nagsisimula sa function na main().",
+        "Bawat C++ program ay nagsisimula sa function na main() — dito nagsisimula ang pagtakbo ng buong program.",
         "#include <iostream>\nint main() {\n    std::cout << \"Hello, RUSTECH!\";\n    return 0;\n}",
-        "Ang std::cout ang gamit para mag-print sa screen."
+        "Ang #include <iostream> ay nag-import ng library para sa input/output — kailangan natin ito para gamitin ang std::cout.",
+        "Ang std::cout ang gamit para mag-print sa screen. Ang << ay tinatawag na 'insertion operator', ito ang nagpapadala ng text papunta sa output.",
+        "Ang return 0; sa dulo ng main() ay nagsasabing 'successful' ang pagtakbo ng program — kailangan ito ng operating system.",
+        "Mahalaga rin ang semicolon (;) sa dulo ng bawat statement sa C++ — parang period ito sa pangungusap. Kapag nakalimutan, magkaka-error ang program.",
+        "Pwede rin tayong maglagay ng comments gamit ang // (single line) o /* ... */ (multiple lines) — hindi ito tumatakbo, para lang ito sa paliwanag ng code."
       ],
       "animationUrl": "",
       "voiceoverUrl": ""
@@ -32,9 +39,13 @@
       "title": "Variables at Data Types",
       "summary": "Mag-imbak ng data gamit ang variables.",
       "contentSlides": [
-        "Ang variable ay isang pangalan na nag-iimbak ng value sa memory.",
-        "Common data types: int (integer), float/double (decimal), char (isang letra), bool (true/false), string (text).",
-        "Halimbawa: int age = 25; float price = 19.99;"
+        "Ang variable ay isang pangalan na nag-iimbak ng value sa memory ng computer, parang isang lalagyan na may label.",
+        "Common data types: int (integer/buong numero), float/double (may decimal), char (isang letra), bool (true/false), string (text).",
+        "Halimbawa: int age = 25; float price = 19.99; char grade = 'A'; bool isOnline = true;",
+        "Sa pagpapangalan ng variable, dapat magsimula sa letra o underscore (hindi numero), walang spaces, at case-sensitive ito (magkaiba ang 'age' at 'Age').",
+        "Ang const keyword ay ginagamit kapag gusto nating hindi na mababago ang value, hal: const int MAX_SCORE = 100;",
+        "Maaari rin nating malaman ang laki (sa memory) ng isang data type gamit ang sizeof(), hal: sizeof(int) ay kadalasan 4 bytes.",
+        "Mahalagang pumili ng tamang data type — kung gagamit ka ng int para sa desimal na numero, mawawala ang decimal part nito (truncation)."
       ],
       "animationUrl": "",
       "voiceoverUrl": ""
@@ -45,9 +56,12 @@
       "title": "Operators",
       "summary": "Arithmetic, comparison, at logical operators.",
       "contentSlides": [
-        "Arithmetic operators: + - * / % (modulo, para sa remainder).",
-        "Comparison operators: == != > < >= <=",
-        "Logical operators: && (AND) || (OR) ! (NOT)"
+        "Arithmetic operators: + (addition) - (subtraction) * (multiplication) / (division) % (modulo, para sa remainder).",
+        "Halimbawa: 10 % 3 ay nagbibigay ng 1 (dahil 10 hatiin sa 3 ay 3 remainder 1) — madalas gamit ito sa pagche-check kung even o odd ang numero.",
+        "Comparison operators: == (pareho) != (hindi pareho) > (mas malaki) < (mas maliit) >= (mas malaki o pareho) <= (mas maliit o pareho).",
+        "Logical operators: && (AND — parehong totoo) || (OR — kahit isa totoo) ! (NOT — pinapalitan ang totoo/hindi).",
+        "Assignment operators na nagpapaikli ng code: x += 5 ay katumbas ng x = x + 5. Pwede rin: -=, *=, /=, %=.",
+        "Increment/decrement: x++ (dinadagdagan ng 1) at x-- (binabawasan ng 1) — madalas makikita sa loops."
       ],
       "animationUrl": "",
       "voiceoverUrl": ""
@@ -58,9 +72,12 @@
       "title": "If-Else at Conditions",
       "summary": "Gumawa ng desisyon sa code gamit ang if-else.",
       "contentSlides": [
-        "Ang if statement ay nagpapatakbo ng code kung totoo (true) ang condition.",
+        "Ang if statement ay nagpapatakbo ng code kung totoo (true) ang condition sa loob ng parenthesis.",
         "if (age >= 18) {\n    std::cout << \"Adult\";\n} else {\n    std::cout << \"Minor\";\n}",
-        "Pwede rin gumamit ng else if para sa maraming condition."
+        "Pwede rin gumamit ng else if para sa maraming condition: if (score >= 90) { ... } else if (score >= 75) { ... } else { ... }",
+        "Ang nested if ay isang if statement sa loob ng ibang if statement — gamit kapag kailangan ng dalawa o higit pang antas ng pagsusuri.",
+        "Ang switch statement ay alternatibo sa maraming else if, mas malinaw kapag maraming specific na value ang sinusuri: switch(grade) { case 'A': ...; break; }",
+        "May tinatawag ding ternary operator, isang maikling paraan ng if-else: int max = (a > b) ? a : b; — kung totoo ang condition, kukunin ang unang value, kung hindi, ang pangalawa."
       ],
       "animationUrl": "",
       "voiceoverUrl": ""
@@ -68,12 +85,16 @@
     {
       "id": "lesson06",
       "order": 6,
-      "title": "Loops (for at while)",
+      "title": "Loops (for, while, do-while)",
       "summary": "Ulitin ang code gamit ang loops.",
       "contentSlides": [
-        "Ang for loop ay ginagamit kapag alam mo na kung ilang beses uulitin.",
+        "Ang for loop ay ginagamit kapag alam mo na kung ilang beses uulitin ang code.",
         "for (int i = 0; i < 5; i++) {\n    std::cout << i;\n}",
-        "Ang while loop naman ay umuulit hangga't totoo ang condition."
+        "May tatlong bahagi ang for loop: (1) simula ng counter, (2) condition kung magpapatuloy, (3) pagbabago ng counter kada ulit.",
+        "Ang while loop naman ay umuulit hangga't totoo ang condition — gamit ito kapag hindi mo alam kung ilang beses uulit: while (isRunning) { ... }",
+        "Ang do-while loop ay katulad ng while, pero tinitiyak nitong tatakbo ang code nang hindi bababa sa isang beses, kahit mali agad ang condition.",
+        "Ang break ay ginagamit para agad na lumabas sa loop, samantalang ang continue ay lumalaktaw papunta sa susunod na ulit nang hindi tinatapos ang kasalukuyan.",
+        "Pwede ring maglagay ng loop sa loob ng loop (nested loop) — halimbawa, kapag gusto mong i-print ang isang 2D grid ng numero."
       ],
       "animationUrl": "",
       "voiceoverUrl": ""
@@ -84,9 +105,13 @@
       "title": "Arrays",
       "summary": "Mag-imbak ng maraming value sa isang variable.",
       "contentSlides": [
-        "Ang array ay listahan ng values na parehong data type.",
+        "Ang array ay listahan ng values na parehong data type, naka-imbak sa magkakasunod na memory.",
         "int scores[5] = {90, 85, 77, 92, 88};",
-        "Ang bawat item ay ina-access gamit ang index, nagsisimula sa 0."
+        "Ang bawat item ay ina-access gamit ang index, nagsisimula sa 0 — kaya ang unang item ay scores[0], hindi scores[1].",
+        "Para makuha ang laki ng array: int size = sizeof(scores) / sizeof(scores[0]); — kinukuha nito ang total bytes hati sa laki ng isang element.",
+        "Madalas gamitin ang for loop para i-loop ang bawat item sa array: for (int i = 0; i < 5; i++) { std::cout << scores[i]; }",
+        "Mag-ingat sa 'out of bounds' — kapag ina-access mo ang index na wala talaga (hal. scores[10] sa array na may 5 lang), hindi ito magbibigay ng malinaw na error pero maaaring mag-crash o magbigay ng maling data.",
+        "May tinatawag ding 2D array, parang grid o table: int grid[3][3]; — gamit ito sa mga bagay tulad ng tic-tac-toe board o larawan."
       ],
       "animationUrl": "",
       "voiceoverUrl": ""
@@ -97,9 +122,13 @@
       "title": "Functions",
       "summary": "Gumawa ng reusable na blocks ng code.",
       "contentSlides": [
-        "Ang function ay pangkat ng code na may pangalan, pwedeng tawagin paulit-ulit.",
+        "Ang function ay pangkat ng code na may pangalan, pwedeng tawagin paulit-ulit nang hindi na kailangang i-type ulit ang code.",
         "int add(int a, int b) {\n    return a + b;\n}",
-        "Tinatawag natin ito sa main() gamit ang: add(3, 5);"
+        "Tinatawag natin ito sa main() gamit ang: int result = add(3, 5);",
+        "May mga function na walang ibinabalik na value — ginagamitan ito ng void bilang return type: void printGreeting() { std::cout << \"Hello!\"; }",
+        "Ang parameters ay ang mga value na ipinapasa papunta sa function (tulad ng a at b sa halimbawa), at ang mga ito ay lokal lamang sa loob ng function.",
+        "Pwede ring magkaroon ng default parameter: void greet(std::string name = \"Guest\") { ... } — kung walang ibinigay na pangalan, gagamitin ang default.",
+        "Ang function overloading ay ang paggawa ng maraming function na parehong pangalan pero magkaibang parameters, hal. add(int, int) at add(double, double)."
       ],
       "animationUrl": "",
       "voiceoverUrl": ""
@@ -110,9 +139,13 @@
       "title": "Pointers (Panimula)",
       "summary": "Unawain ang memory address at pointers.",
       "contentSlides": [
-        "Ang pointer ay variable na nag-iimbak ng memory address ng ibang variable.",
+        "Ang pointer ay variable na nag-iimbak ng memory address ng ibang variable, sa halip na direktang value.",
         "int x = 10;\nint* ptr = &x;",
-        "Ang & ay 'address of' at ang * ay 'dereference' (kunin ang value sa address)."
+        "Ang & ay 'address of' operator (kumukuha ng address) at ang * ay 'dereference' operator (kumukuha ng value na nasa address na 'yun).",
+        "Halimbawa: std::cout << *ptr; ay magpi-print ng 10 (ang value ni x), habang std::cout << ptr; ay magpi-print ng memory address.",
+        "May tinatawag ding null pointer — isang pointer na wala pang tinuturong address: int* p = nullptr; — mahalagang i-check ito bago gamitin para maiwasan ang crash.",
+        "Malapit na relasyon ang array at pointer sa C++ — ang pangalan ng array ay parang pointer papunta sa unang element nito.",
+        "Bakit importante ang pointers lalo na sa embedded systems (tulad ng ESP32): direkta nitong tinuturo ang mga memory-mapped registers ng hardware, na kailangan para kontrolin ang mga pins at peripherals."
       ],
       "animationUrl": "",
       "voiceoverUrl": ""
@@ -123,9 +156,13 @@
       "title": "Classes at Objects (OOP)",
       "summary": "Panimula sa Object-Oriented Programming.",
       "contentSlides": [
-        "Ang class ay blueprint para gumawa ng objects na may sariling data at functions.",
+        "Ang class ay blueprint para gumawa ng objects na may sariling data (properties) at functions (methods).",
         "class Robot {\npublic:\n    std::string name;\n    void move() { std::cout << name << \" is moving\"; }\n};",
-        "Gumagawa tayo ng object mula sa class: Robot r; r.name = \"RUSTECH-1\"; r.move();"
+        "Gumagawa tayo ng object mula sa class: Robot r; r.name = \"RUSTECH-1\"; r.move();",
+        "Ang public ay isang access modifier — nangangahulugang pwedeng ma-access ang data/function na ito mula sa labas ng class. May tinatawag ding private, kung saan mismong loob lang ng class ang pwedeng mag-access — ito ang tinatawag na encapsulation.",
+        "Ang constructor ay isang espesyal na function na awtomatikong tumatakbo kapag ginagawa ang isang bagong object, kapaki-pakinabang para mag-set up ng initial values: Robot() { name = \"Unnamed\"; }",
+        "Ang inheritance ay konsepto kung saan maaaring 'magmana' ang isang class ng properties at functions mula sa ibang class — halimbawa, class SmartRobot : public Robot { ... } — kikuha ito ng lahat ng meron ang Robot.",
+        "Ang OOP ay isa sa mga pinaka-makapangyarihang paraan ng pag-organisa ng malalaking programs, dahil pinaghihiwalay nito ang code sa mga makabuluhang bahagi (objects) na madaling i-maintain at i-reuse."
       ],
       "animationUrl": "",
       "voiceoverUrl": ""
@@ -134,43 +171,73 @@
   "quizzes": {
     "lesson01": [
       { "question": "Ang C++ ay anong klaseng language?", "choices": ["Compiled", "Wala sa dalawa", "Interpreted lang", "Hindi programming language"], "correctIndex": 0 },
-      { "question": "Ano ang isang gamit ng C++ na binanggit?", "choices": ["Paggawa lang ng website", "Games at embedded systems", "Spreadsheet lang", "Video editing lang"], "correctIndex": 1 }
+      { "question": "Ano ang isang gamit ng C++ na binanggit?", "choices": ["Paggawa lang ng website", "Games at embedded systems", "Spreadsheet lang", "Video editing lang"], "correctIndex": 1 },
+      { "question": "Sino ang gumawa ng C++?", "choices": ["Bjarne Stroustrup", "James Gosling", "Guido van Rossum", "Dennis Ritchie"], "correctIndex": 0 },
+      { "question": "Anong taon ginawa ang C++?", "choices": ["1960s", "1970s", "1980s", "2000s"], "correctIndex": 2 },
+      { "question": "Bakit mabilis ang C++ programs?", "choices": ["Dahil compiled ito papuntang machine code", "Dahil malaki ang file size", "Dahil kailangan ng internet", "Dahil interpreted ito"], "correctIndex": 0 }
     ],
     "lesson02": [
       { "question": "Anong function ang laging pinagsisimulan ng C++ program?", "choices": ["start()", "main()", "run()", "init()"], "correctIndex": 1 },
-      { "question": "Ano ang gamit ng std::cout?", "choices": ["Mag-print sa screen", "Mag-delete ng file", "Gumawa ng loop", "Mag-imbak ng number"], "correctIndex": 0 }
+      { "question": "Ano ang gamit ng std::cout?", "choices": ["Mag-print sa screen", "Mag-delete ng file", "Gumawa ng loop", "Mag-imbak ng number"], "correctIndex": 0 },
+      { "question": "Ano ang gamit ng #include <iostream>?", "choices": ["Nag-i-import ng input/output library", "Nagde-delete ng code", "Nagpapaikli ng program", "Wala itong gamit"], "correctIndex": 0 },
+      { "question": "Ano ang gamit ng return 0; sa dulo ng main()?", "choices": ["Nagpapakita ng error", "Sinasabing successful ang program", "Nagta-trigger ng loop", "Nagde-delete ng variable"], "correctIndex": 1 },
+      { "question": "Paano gumawa ng single-line comment sa C++?", "choices": ["# comment", "// comment", "<!-- comment -->", "** comment"], "correctIndex": 1 }
     ],
     "lesson03": [
       { "question": "Aling data type ang gamit sa decimal numbers?", "choices": ["int", "char", "float", "bool"], "correctIndex": 2 },
-      { "question": "Ano ang tamang paraan para gumawa ng int variable na 'age'?", "choices": ["int age = 25;", "age int = 25;", "variable age = 25;", "25 = int age;"], "correctIndex": 0 }
+      { "question": "Ano ang tamang paraan para gumawa ng int variable na 'age'?", "choices": ["int age = 25;", "age int = 25;", "variable age = 25;", "25 = int age;"], "correctIndex": 0 },
+      { "question": "Ano ang gamit ng const keyword?", "choices": ["Para hindi na mababago ang value", "Para gawing mas mabilis ang program", "Para gumawa ng loop", "Para mag-delete ng variable"], "correctIndex": 0 },
+      { "question": "Alin sa mga ito ang VALID na pangalan ng variable?", "choices": ["2ndPlace", "student_name", "my name", "class"], "correctIndex": 1 },
+      { "question": "Ano ang gamit ng sizeof()?", "choices": ["Kunin ang laki (bytes) ng isang data type", "Kunin ang value ng variable", "Gumawa ng bagong variable", "Mag-print sa screen"], "correctIndex": 0 }
     ],
     "lesson04": [
       { "question": "Anong operator ang gamit sa modulo (remainder)?", "choices": ["/", "%", "*", "//"], "correctIndex": 1 },
-      { "question": "Anong logical operator ang ibig sabihin ay 'AND'?", "choices": ["||", "!", "&&", "=="], "correctIndex": 2 }
+      { "question": "Anong logical operator ang ibig sabihin ay 'AND'?", "choices": ["||", "!", "&&", "=="], "correctIndex": 2 },
+      { "question": "Ano ang resulta ng 10 % 3?", "choices": ["3", "1", "0", "10"], "correctIndex": 1 },
+      { "question": "Ano ang katumbas ng x += 5?", "choices": ["x = x + 5", "x = 5", "x = x - 5", "x == 5"], "correctIndex": 0 },
+      { "question": "Ano ang ginagawa ng x++?", "choices": ["Binabawasan ng 1 ang x", "Dinodoble ang x", "Dinadagdagan ng 1 ang x", "Ginagawang zero ang x"], "correctIndex": 2 }
     ],
     "lesson05": [
       { "question": "Kailan tumatakbo ang code sa loob ng if block?", "choices": ["Kapag false ang condition", "Kapag true ang condition", "Palagi", "Kailanman"], "correctIndex": 1 },
-      { "question": "Anong keyword ang gamit kung gusto mo ng 'kung hindi' na condition?", "choices": ["else", "then", "loop", "break"], "correctIndex": 0 }
+      { "question": "Anong keyword ang gamit kung gusto mo ng 'kung hindi' na condition?", "choices": ["else", "then", "loop", "break"], "correctIndex": 0 },
+      { "question": "Ano ang switch statement?", "choices": ["Isang loop", "Alternatibo sa maraming else if", "Isang function", "Isang data type"], "correctIndex": 1 },
+      { "question": "Ano ang ternary operator?", "choices": ["Isang maikling paraan ng if-else", "Isang uri ng loop", "Isang array", "Isang pointer"], "correctIndex": 0 },
+      { "question": "Ano ang nested if?", "choices": ["If statement sa loob ng ibang if statement", "Isang uri ng array", "Isang function na walang return", "Isang loop na hindi tumitigil"], "correctIndex": 0 }
     ],
     "lesson06": [
       { "question": "Kailan mas maganda gamitin ang for loop kaysa while loop?", "choices": ["Kapag hindi alam ang bilang ng ulit", "Kapag alam na ang bilang ng ulit", "Hindi pwede gamitin", "Palagi mas maganda ang while"], "correctIndex": 1 },
-      { "question": "Anong ginagawa ng i++ sa loob ng for loop?", "choices": ["Binabawasan ang i", "Dinodoble ang i", "Dinadagdagan ng 1 ang i", "Ginagawang zero ang i"], "correctIndex": 2 }
+      { "question": "Anong ginagawa ng i++ sa loob ng for loop?", "choices": ["Binabawasan ang i", "Dinodoble ang i", "Dinadagdagan ng 1 ang i", "Ginagawang zero ang i"], "correctIndex": 2 },
+      { "question": "Ano ang pinagkaiba ng do-while sa while loop?", "choices": ["Walang pinagkaiba", "Tatakbo ang do-while nang hindi bababa sa isang beses", "Mas mabilis ang do-while", "Hindi pwede gamitan ng condition ang do-while"], "correctIndex": 1 },
+      { "question": "Ano ang ginagawa ng break sa loob ng loop?", "choices": ["Agad na lumalabas sa loop", "Nagpapatuloy sa susunod na ulit", "Nag-re-restart ng program", "Wala itong ginagawa"], "correctIndex": 0 },
+      { "question": "Ano ang ginagawa ng continue sa loob ng loop?", "choices": ["Agad na lumalabas sa loop", "Lumalaktaw papunta sa susunod na ulit", "Nag-de-delete ng loop", "Nagpapabagal ng program"], "correctIndex": 1 }
     ],
     "lesson07": [
       { "question": "Saan nagsisimula ang index ng array sa C++?", "choices": ["0", "1", "-1", "10"], "correctIndex": 0 },
-      { "question": "Ano ang array?", "choices": ["Isang function", "Listahan ng values na parehong type", "Isang loop", "Isang class"], "correctIndex": 1 }
+      { "question": "Ano ang array?", "choices": ["Isang function", "Listahan ng values na parehong type", "Isang loop", "Isang class"], "correctIndex": 1 },
+      { "question": "Paano makuha ang laki ng array?", "choices": ["array.length", "sizeof(array) / sizeof(array[0])", "array.size", "count(array)"], "correctIndex": 1 },
+      { "question": "Ano ang mangyayari kung ina-access ang index na wala sa array (out of bounds)?", "choices": ["Magbibigay ng malinaw na error palagi", "Maaaring mag-crash o magbigay ng maling data", "Awtomatikong lalaki ang array", "Walang epekto"], "correctIndex": 1 },
+      { "question": "Ano ang 2D array?", "choices": ["Isang array na may dalawang pangalan", "Isang grid o table ng values", "Isang function", "Isang uri ng loop"], "correctIndex": 1 }
     ],
     "lesson08": [
       { "question": "Bakit tayo gumagamit ng functions?", "choices": ["Para mas mahaba ang code", "Para reusable ang code", "Para mabagal ang program", "Wala itong gamit"], "correctIndex": 1 },
-      { "question": "Ano ang ibabalik ng function na 'int add(int a, int b)'?", "choices": ["Isang string", "Wala", "Isang integer", "Isang array"], "correctIndex": 2 }
+      { "question": "Ano ang ibabalik ng function na 'int add(int a, int b)'?", "choices": ["Isang string", "Wala", "Isang integer", "Isang array"], "correctIndex": 2 },
+      { "question": "Anong return type ang gamit kapag walang ibinabalik na value ang function?", "choices": ["int", "void", "null", "empty"], "correctIndex": 1 },
+      { "question": "Ano ang default parameter?", "choices": ["Isang value na ginagamit kapag walang ibinigay", "Isang uri ng error", "Isang loop", "Isang array"], "correctIndex": 0 },
+      { "question": "Ano ang function overloading?", "choices": ["Isang function na masyadong mabagal", "Maraming function na parehong pangalan pero magkaibang parameters", "Isang function na walang return", "Isang error sa code"], "correctIndex": 1 }
     ],
     "lesson09": [
       { "question": "Ano ang tinatawag na 'address of' operator?", "choices": ["*", "&", "%", "#"], "correctIndex": 1 },
-      { "question": "Ano ang iniimbak ng isang pointer?", "choices": ["Isang string lang", "Isang memory address", "Isang function", "Isang class name"], "correctIndex": 1 }
+      { "question": "Ano ang iniimbak ng isang pointer?", "choices": ["Isang string lang", "Isang memory address", "Isang function", "Isang class name"], "correctIndex": 1 },
+      { "question": "Ano ang gamit ng * sa pointer (dereference)?", "choices": ["Kumukuha ng value sa address na tinuturo", "Kumukuha ng address", "Gumagawa ng bagong pointer", "Nagde-delete ng pointer"], "correctIndex": 0 },
+      { "question": "Ano ang null pointer?", "choices": ["Isang pointer na may sirang value", "Isang pointer na wala pang tinuturong address", "Isang pointer na napakabilis", "Isang uri ng array"], "correctIndex": 1 },
+      { "question": "Bakit importante ang pointers sa embedded systems tulad ng ESP32?", "choices": ["Wala itong gamit sa embedded", "Direkta nitong tinuturo ang mga memory-mapped registers ng hardware", "Ginagawang mas maganda ang graphics", "Ginagawang mas mabagal ang program"], "correctIndex": 1 }
     ],
     "lesson10": [
       { "question": "Ano ang class sa C++?", "choices": ["Isang loop", "Blueprint para sa objects", "Isang variable", "Isang error"], "correctIndex": 1 },
-      { "question": "Anong OOP concept ang pinakita ng lesson na ito?", "choices": ["Loops", "Pointers", "Classes at Objects", "Arrays"], "correctIndex": 2 }
+      { "question": "Anong OOP concept ang pinakita ng lesson na ito?", "choices": ["Loops", "Pointers", "Classes at Objects", "Arrays"], "correctIndex": 2 },
+      { "question": "Ano ang encapsulation?", "choices": ["Paglalagay ng data sa array", "Pagtatago ng data gamit ang private access modifier", "Isang uri ng loop", "Isang function na walang parameter"], "correctIndex": 1 },
+      { "question": "Ano ang constructor?", "choices": ["Isang function na awtomatikong tumatakbo kapag ginawa ang object", "Isang uri ng array", "Isang error sa class", "Isang variable lang"], "correctIndex": 0 },
+      { "question": "Ano ang inheritance?", "choices": ["Pagde-delete ng class", "Isang class na kumukuha ng properties/functions mula sa ibang class", "Isang uri ng loop", "Isang error sa compilation"], "correctIndex": 1 }
     ]
   }
 }

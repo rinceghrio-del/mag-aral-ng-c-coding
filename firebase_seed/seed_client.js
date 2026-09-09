@@ -20,6 +20,8 @@ const {
   setDoc,
   collection,
   addDoc,
+  getDocs,
+  deleteDoc,
 } = require("firebase/firestore");
 const fs = require("fs");
 const path = require("path");
@@ -47,6 +49,14 @@ async function seed() {
   for (const [lessonId, questions] of Object.entries(data.quizzes)) {
     // Placeholder parent doc para may laman ang quizzes/{lessonId}
     await setDoc(doc(db, "quizzes", lessonId), { lessonId });
+
+    // I-clear muna ang mga lumang questions para hindi dumoble kapag
+    // pinatakbo ulit ang script na ito (hal. kapag nagdagdag ng bagong
+    // tanong sa lessons_seed.json).
+    const existing = await getDocs(collection(db, "quizzes", lessonId, "questions"));
+    for (const d of existing.docs) {
+      await deleteDoc(d.ref);
+    }
 
     for (const q of questions) {
       await addDoc(collection(db, "quizzes", lessonId, "questions"), q);
